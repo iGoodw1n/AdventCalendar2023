@@ -14,29 +14,8 @@ long ParseData(string data)
 
 long GetAllPossibleWins(long time, long distance)
 {
-    var min = 1L;
-    for (; min <= time; min++)
-    {
-        if (CalcDistance(min) > distance)
-        {
-            break;
-        }
-    }
+    var minTimeButtonPressed = (-time + (long)Math.Sqrt(time * time - 4 * (-1) * -distance)) / (2 * (-1));
+    var maxTimeButtonPressed = (-time - (long)Math.Sqrt(time * time - 4 * (-1) * -distance)) / (2 * (-1));
 
-    var max = time - 1;
-
-    for (; max > min; max--)
-    {
-        if (CalcDistance(max) > distance)
-        {
-            break;
-        }
-    }
-
-    return max - min + 1;
-
-    long CalcDistance(long seconds)
-    {
-        return (time - seconds) * seconds;
-    }
+    return maxTimeButtonPressed - minTimeButtonPressed + 1;
 }

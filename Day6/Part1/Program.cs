@@ -19,29 +19,8 @@ List<int> ParseData(string data)
 
 int GetAllPossibleWins(int time, int distance)
 {
-    var min = 1;
-    for (; min <= time; min++)
-    {
-        if (CalcDistance(min) > distance)
-        {
-            break;
-        }
-    }
+    var minTimeButtonPressed = (-time + (int)Math.Sqrt(time * time - 4 * (-1) * -distance)) / (2 * (-1));
+    var maxTimeButtonPressed = (-time - (int)Math.Sqrt(time * time - 4 * (-1) * -distance)) / (2 * (-1));
 
-    var max = time - 1;
-
-    for (; max > min; max--)
-    {
-        if (CalcDistance(max) > distance)
-        {
-            break;
-        }
-    }
-
-    return max - min + 1;
-
-    int CalcDistance(int seconds)
-    {
-        return (time - seconds) * seconds;
-    }
+    return maxTimeButtonPressed - minTimeButtonPressed + 1;
 }
